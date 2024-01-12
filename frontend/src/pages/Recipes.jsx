@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import Header from '../components/RecipeHeader.jsx'
+import Button from '../components/Button.jsx'
+import Dropdown from '../components/Dropdown.jsx'
 import logo from '../assets/recipes-logo.png'
 
 const Recipes = () => {
@@ -19,7 +21,7 @@ const Recipes = () => {
     }, [])
 
     return(
-        <div className="">
+        <div className="bg-main-gray">
             <div className="Recipes">
                 {recipes && recipes.map(() => (
                     <p key={ recipe._id }>{ recipe.title }</p>
@@ -27,6 +29,15 @@ const Recipes = () => {
             </div>
 
             <Header title="Recipes" logo={logo} />
+
+            <div className="">
+                <Dropdown />
+                <Button title="Breakfast" />
+                <Button title="Lunch" />
+                <Button title="Dinner" />
+                <Button title="Dessert" />
+                <Button title="Snacks" />
+            </div>
         </div>
     )
 }

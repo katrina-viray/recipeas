@@ -14,6 +14,7 @@ export default {
         'main-purple':'#635BFF',
         'second-purple':'#B55BFF',
         'main-blue':'#5BA5FF',
+        'main-gray':'#D6D4D4'
       }
     },
   },

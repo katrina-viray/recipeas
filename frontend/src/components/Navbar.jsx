@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     return (
-        <header className="bg-main-purple py-10">
+        <header className="bg-main-purple pt-10 px-10">
             <div className="text-white container mx-auto flex justify-between items-center">
                 <Link to="/">
                     <h1 className="font-mono font-bold text-4xl">Recipeas</h1>

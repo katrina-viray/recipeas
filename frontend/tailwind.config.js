@@ -2,6 +2,13 @@
 export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./index.html"],
   theme: {
+    screens: {
+      'sm': '80%', // => @media (min-width: 640px) { ... }
+      'md': '100%', // => @media (min-width: 768px) { ... }
+      'lg': '1024px', // => @media (min-width: 1024px) { ... }
+      'xl': '1280px', // => @media (min-width: 1280px) { ... }
+      '2xl': '1600px', // => @media (min-width: 1536px) { ... }
+    },
     extend: {
       colors: {
         'main-purple':'#635BFF',

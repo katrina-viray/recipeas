@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
+import Header from '../components/RecipeHeader.jsx'
 import logo from '../assets/recipes-logo.png'
 
-const Home = () => {
+const Recipes = () => {
     const [recipes, setRecipes] = useState(null);
 
     useEffect(() => {
@@ -24,8 +25,10 @@ const Home = () => {
                     <p key={ recipe._id }>{ recipe.title }</p>
                 ))}
             </div>
+
+            <Header title="Recipes" logo={logo} />
         </div>
     )
 }
 
-export default Home
+export default Recipes

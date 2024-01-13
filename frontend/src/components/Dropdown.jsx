@@ -18,22 +18,10 @@ const Dropdown = ({ options }) => {
       <div>
         <button
           type="button"
-          className="inline-flex justify-center items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring focus:border-blue-300"
+          className="inline-flex justify-center items-center px-4 py-2.5 border border-gray-300 rounded-3xl bg-second-purple text-sm text-white hover:bg-main-blue focus:outline-none focus:ring focus:border-main-purple"
           onClick={handleToggle}
         >
-          {selectedOption ? selectedOption.label : 'Select an option'}
-          <svg
-            className="-mr-1 ml-2 h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 12a1 1 0 011-1h8a1 1 0 010 2h-8a1 1 0 01-1-1zm0-6a1 1 0 011-1h8a1 1 0 110 2h-8a1 1 0 01-1-1zm0-6a1 1 0 011-1h8a1 1 0 110 2h-8a1 1 0 01-1-1z"
-              clipRule="evenodd"
-            />
-          </svg>
+          {selectedOption ? selectedOption.label : 'Sort by: Favorited'}
         </button>
       </div>
 

@@ -36,11 +36,11 @@ const Recipes = () => {
 
             <div className="flex">
                 <div className="flex-col ml-10">
-                    <div className="pt-7 pr-9">
+                    <div className="pt-8 pr-9">
                         <Dropdown options={["Sort by: Favorited", "Sort by: Favorited"]}/>
                     </div>
                                     
-                    <div className="py-3 pt-16 pr-9">
+                    <div className="py-3 pt-10 pr-9">
                         <Button title="Breakfast"/>
                     </div>
 
@@ -83,11 +83,76 @@ const Recipes = () => {
                                 <List sx={style}>
                                     <Divider variant="middle" component="li" />
                                     <ListItem>
-                                        <div className="pr-4">
-                                            <ListItemText primary={"Apple pie overnight oats"} />
+                                        <div className="pr-16">
+                                            <ListItemText primary={"Apple Pie"} />
                                         </div>
-                                        <div className="pr-4">
-                                            <ListItemText primary={"Breakfast"} />
+                                        <div className="pr-8">
+                                            <ListItemText primary={"Dessert"} />
+                                        </div>
+                                        <div className="">
+                                            <ListItemText primary={"Favorite"} />
+                                        </div>
+                                    </ListItem>
+                                    
+                                    <Divider variant="middle" component="li" />
+                                    <ListItem>
+                                        <div className="pr-16">
+                                            <ListItemText primary={"Apple Pie"} />
+                                        </div>
+                                        <div className="pr-8">
+                                            <ListItemText primary={"Dessert"} />
+                                        </div>
+                                        <div className="">
+                                            <ListItemText primary={"Favorite"} />
+                                        </div>
+                                    </ListItem>
+
+                                    <Divider variant="middle" component="li" />
+                                    <ListItem>
+                                        <div className="pr-16">
+                                            <ListItemText primary={"Apple Pie"} />
+                                        </div>
+                                        <div className="pr-8">
+                                            <ListItemText primary={"Dessert"} />
+                                        </div>
+                                        <div className="">
+                                            <ListItemText primary={"Favorite"} />
+                                        </div>
+                                    </ListItem>
+
+                                    <Divider variant="middle" component="li" />
+                                    <ListItem>
+                                        <div className="pr-16">
+                                            <ListItemText primary={"Apple Pie"} />
+                                        </div>
+                                        <div className="pr-8">
+                                            <ListItemText primary={"Dessert"} />
+                                        </div>
+                                        <div className="">
+                                            <ListItemText primary={"Favorite"} />
+                                        </div>
+                                    </ListItem>
+
+                                    <Divider variant="middle" component="li" />
+                                    <ListItem>
+                                        <div className="pr-16">
+                                            <ListItemText primary={"Apple Pie"} />
+                                        </div>
+                                        <div className="pr-8">
+                                            <ListItemText primary={"Dessert"} />
+                                        </div>
+                                        <div className="">
+                                            <ListItemText primary={"Favorite"} />
+                                        </div>
+                                    </ListItem>
+
+                                    <Divider variant="middle" component="li" />
+                                    <ListItem>
+                                        <div className="pr-16">
+                                            <ListItemText primary={"Apple Pie"} />
+                                        </div>
+                                        <div className="pr-8">
+                                            <ListItemText primary={"Dessert"} />
                                         </div>
                                         <div className="">
                                             <ListItemText primary={"Favorite"} />

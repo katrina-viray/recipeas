@@ -3,6 +3,16 @@ import Header from '../components/RecipeHeader.jsx'
 import Button from '../components/Button.jsx'
 import Dropdown from '../components/Dropdown.jsx'
 import logo from '../assets/recipes-logo.png'
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+
+const style = {
+    py: 0,
+    width: '100%',
+    maxWidth: 360,
+  };
 
 const Recipes = () => {
     const [recipes, setRecipes] = useState(null);
@@ -21,23 +31,82 @@ const Recipes = () => {
     }, [])
 
     return(
-        <div className="bg-main-gray">
-            <div className="Recipes">
-                {recipes && recipes.map(() => (
-                    <p key={ recipe._id }>{ recipe.title }</p>
-                ))}
-            </div>
-
+        <div className="flex flex-col h-full min-h-screen bg-main-gray">
             <Header title="Recipes" logo={logo} />
 
-            <div className="">
-                <Dropdown />
-                <Button title="Breakfast" />
-                <Button title="Lunch" />
-                <Button title="Dinner" />
-                <Button title="Dessert" />
-                <Button title="Snacks" />
+            <div className="flex">
+                <div className="flex-col ml-10">
+                    <div className="pt-7 pr-9">
+                        <Dropdown options={["Sort by: Favorited", "Sort by: Favorited"]}/>
+                    </div>
+                                    
+                    <div className="py-3 pt-16 pr-9">
+                        <Button title="Breakfast"/>
+                    </div>
+
+                    <div className="py-3 pr-9">
+                        <Button title="Lunch" />
+                    </div>
+
+                    <div className="py-3 pr-9">
+                        <Button title="Dinner" />
+                    </div>
+
+                    <div className="py-3 pr-9">
+                        <Button title="Dessert" />
+                    </div>
+
+                    <div className="py-3 pr-9">
+                        <Button title="Snacks" />
+                    </div>
+                </div>
+
+                <div className="flex-col items-center mt-2">
+                    <div className="Searchbar pt-5 relative mx-auto text-gray-600">
+                        <input type="search" placeholder="Search for your recipe here"
+                        className="border border-main-purple bg-white h-12 pl-10 w-96 \
+                        rounded-3xl text-sm focus:outline-none" />
+                        <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+                            
+                        </button>
+                    </div>
+
+                    <div className="RecipeList flex items-start pt-9 h-screen">
+                        <div className="bg-white pt-4 pb-1 px-5 rounded-3xl">
+                            <div className="flex flex-col items-start">
+                                <div className="font-bold pb-2 pl-3.5 flex">
+                                    <h2 className="pr-24">Name</h2>
+                                    <h2 className="pr-12">Tags</h2>
+                                    <h2 className="">Favorite</h2>
+                                </div>
+
+                                <List sx={style}>
+                                    <Divider variant="middle" component="li" />
+                                    <ListItem>
+                                        <div className="pr-4">
+                                            <ListItemText primary={"Apple pie overnight oats"} />
+                                        </div>
+                                        <div className="pr-4">
+                                            <ListItemText primary={"Breakfast"} />
+                                        </div>
+                                        <div className="">
+                                            <ListItemText primary={"Favorite"} />
+                                        </div>
+                                    </ListItem>
+                                    
+                                </List>
+
+                                {recipes && recipes.map(() => (
+                                    <p key={ recipes._id }>{ recipes.title }</p>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+
+
         </div>
     )
 }

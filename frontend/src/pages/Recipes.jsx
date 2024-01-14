@@ -7,6 +7,7 @@ import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import { Link } from 'react-router-dom';
 
 const style = {
     py: 0,
@@ -161,8 +162,12 @@ const Recipes = () => {
                                     
                                 </List>
 
-                                {recipes && recipes.map(() => (
-                                    <p key={ recipes._id }>{ recipes.title }</p>
+                                {recipes && recipes.map((recipe) => (
+                                    <div className="recipe-preview" key={recipe.id}>
+                                        <Link to={`/recipes/${recipe.id}`}>
+                                            <h2>{ recipe.title }</h2>
+                                        </Link>
+                                    </div>
                                 ))}
                             </div>
                         </div>

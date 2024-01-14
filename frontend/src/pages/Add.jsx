@@ -1,6 +1,7 @@
 import logo from '../assets/add-logo.png'
 import Header from '../components/RecipeHeader.jsx'
 import Button from '../components/Button.jsx'
+import React, { useState } from 'react';
 
 const Add = () => {
     return (
@@ -39,12 +40,23 @@ const Add = () => {
                          className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
 
                         <p className="text-white pt-4">Ingredients</p>
-                        <input type="text" placeholder="E.g. 1 cup of milk"
-                         className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
+                        <div className="relative w-full" >
+                            <input type="text" placeholder="E.g. 1 cup of milk"
+                            className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
+                        </div>
 
                         <p className="text-white pt-4">Directions</p>
-                        <input type="text" placeholder="E.g. 1. Mix ingredients."
-                         className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
+                        <div className="relative w-full">
+                            <input type="text" placeholder="E.g. 1. Mix ingredients."
+                            className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
+                        </div>
+
+                        <div className="flex justify-center item-center pt-9">
+                            <button className="bg-second-purple text-white hover:bg-main-blue
+                            hover:text-white hover:border-slate-500 hover:drop-shadow 
+                            hover:outline-none font-bold py-1.5 w-36
+                            rounded-full">Save Recipe</button>
+                        </div>
                     </div>
                 </div>
             </div>

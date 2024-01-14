@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Recipes from './pages/Recipes'
 import Add from './pages/Add'
 import Login from './pages/Login'
+import SingleRecipe from './pages/SingleRecipe'
 import '../index.css'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
               <Route path="/recipes" element={<Recipes />} />
               <Route path="/add" element={<Add />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/recipes/singleRecipe" element={<SingleRecipe />} />
             </Routes>
           </div>
         </BrowserRouter>

@@ -1,33 +1,12 @@
-import { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import logo from '../assets/food-logo.png'
 
 const Home = () => {
-    const [recipes, setRecipes] = useState(null);
-
-    useEffect(() => {
-        const fetchRecipes = async () => {
-            const response = await fetch('http://localhost:4000/api/recipes')
-            const json = await response.json()
-
-            if(response.ok){
-                setRecipes(json)
-            }
-        }
-
-        fetchRecipes()
-    }, [])
-
     return(
         <div>
             <Navbar/>
             <div className="flex flex-col">
             <div className="bg-gradient-to-t from-white to-main-purple h-full min-h-screen">
-                <div className="Recipes">
-                    {recipes && recipes.map(() => (
-                        <p key={ recipe._id }>{ recipe.title }</p>
-                    ))}
-                </div>
                 <div className="flex items-center justify-center h-screen">
                     <div className="text-white text-center ">
                         <h2 className="font-bold text-3xl">Welcome to Katnando's Recipeas!</h2>

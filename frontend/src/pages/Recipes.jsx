@@ -95,78 +95,11 @@ const Recipes = () => {
                                         </div>
                                     </ListItem>
                                     
-                                    <Divider variant="middle" component="li" />
-                                    <ListItem>
-                                        <div className="pr-16">
-                                            <ListItemText primary={"Apple Pie"} />
-                                        </div>
-                                        <div className="pr-8">
-                                            <ListItemText primary={"Dessert"} />
-                                        </div>
-                                        <div className="">
-                                            <ListItemText primary={"Favorite"} />
-                                        </div>
-                                    </ListItem>
-
-                                    <Divider variant="middle" component="li" />
-                                    <ListItem>
-                                        <div className="pr-16">
-                                            <ListItemText primary={"Apple Pie"} />
-                                        </div>
-                                        <div className="pr-8">
-                                            <ListItemText primary={"Dessert"} />
-                                        </div>
-                                        <div className="">
-                                            <ListItemText primary={"Favorite"} />
-                                        </div>
-                                    </ListItem>
-
-                                    <Divider variant="middle" component="li" />
-                                    <ListItem>
-                                        <div className="pr-16">
-                                            <ListItemText primary={"Apple Pie"} />
-                                        </div>
-                                        <div className="pr-8">
-                                            <ListItemText primary={"Dessert"} />
-                                        </div>
-                                        <div className="">
-                                            <ListItemText primary={"Favorite"} />
-                                        </div>
-                                    </ListItem>
-
-                                    <Divider variant="middle" component="li" />
-                                    <ListItem>
-                                        <div className="pr-16">
-                                            <ListItemText primary={"Apple Pie"} />
-                                        </div>
-                                        <div className="pr-8">
-                                            <ListItemText primary={"Dessert"} />
-                                        </div>
-                                        <div className="">
-                                            <ListItemText primary={"Favorite"} />
-                                        </div>
-                                    </ListItem>
-
-                                    <Divider variant="middle" component="li" />
-                                    <ListItem>
-                                        <div className="pr-16">
-                                            <ListItemText primary={"Apple Pie"} />
-                                        </div>
-                                        <div className="pr-8">
-                                            <ListItemText primary={"Dessert"} />
-                                        </div>
-                                        <div className="">
-                                            <ListItemText primary={"Favorite"} />
-                                        </div>
-                                    </ListItem>
-                                    
                                 </List>
 
                                 {recipes && recipes.map((recipe) => (
                                     <div className="recipe-preview" key={recipe.id}>
-                                        <Link to={`/recipes/${recipe.id}`}>
-                                            <h2>{ recipe.title }</h2>
-                                        </Link>
+                                        <p key={recipe._id}>{recipe.title}</p>
                                     </div>
                                 ))}
                             </div>

@@ -17,11 +17,13 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.15.4",
     "autoprefixer": "^10.4.16",
+    "cors": "^2.8.5",
     "postcss": "^8.4.33",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.1",
-    "react-scripts": "^3.0.1"
+    "react-scripts": "^3.0.1",
+    "ripples": "^0.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

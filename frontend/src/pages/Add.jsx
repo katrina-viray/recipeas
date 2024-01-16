@@ -1,7 +1,9 @@
 import logo from '../assets/add-logo.png'
 import Header from '../components/RecipeHeader.jsx'
 import Button from '../components/Button.jsx'
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import Input from '../components/Input.jsx'
+
 
 const Add = () => {
     return (
@@ -10,7 +12,7 @@ const Add = () => {
 
             <div className="flex items-center justify-center h-screen">
                 <div className="flex items-start pt-8 h-screen">
-                    <div className="bg-main-purple pt-8 pb-8 px-14 rounded-2xl">
+                    <div className="bg-main-purple pt-8 pb-8 pl-14 pr-5 rounded-2xl">
                         <p className="text-white pb-2">Which type of food would you like to add?</p>
 
                         <div className="py-1.5 flex">
@@ -41,14 +43,12 @@ const Add = () => {
 
                         <p className="text-white pt-4">Ingredients</p>
                         <div className="relative w-full" >
-                            <input type="text" placeholder="E.g. 1 cup of milk"
-                            className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
+                            <Input title="Ingredients"/>
                         </div>
 
                         <p className="text-white pt-4">Directions</p>
                         <div className="relative w-full">
-                            <input type="text" placeholder="E.g. 1. Mix ingredients."
-                            className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
+                            <Input title="Directions"/>
                         </div>
 
                         <div className="flex justify-center item-center pt-9">

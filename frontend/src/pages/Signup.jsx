@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-const Login = () => {
+const Signup = () => {
+  const [first, setFirst] = useState('');
+  const [last, setLast] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
@@ -12,8 +14,28 @@ const Login = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-gradient-to-t from-white to-main-purple">
       <div className="bg-white bg-opacity-20 p-12 rounded-3xl backdrop-filter backdrop-blur-md shadow-md">
-        <h2 className="text-2xl font-semibold mb-8 text-main-purple text-center">Sign in</h2>
+        <h2 className="text-2xl font-semibold mb-8 text-main-purple text-center">Sign up</h2>
         <form>
+          <div className="flex mb-4">
+            <input
+              type="text"
+              id="first"
+              className="flex-1 border border-white p-2 rounded text-main-purple focus:outline-none"
+              placeholder="First Name *"
+              value={first}
+              onChange={(e) => setFirst(e.target.value)}
+            />
+            <div className="ml-4">
+              <input
+                type="text"
+                id="last"
+                className="flex-1 border border-white p-2 rounded text-main-purple focus:outline-none"
+                placeholder="Last Name *"
+                value={last}
+                onChange={(e) => setLast(e.target.value)}
+              />
+            </div>
+          </div>
           <div className="mb-4">
             <input
               type="email"
@@ -34,34 +56,17 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="mb-4 flex items-center">
-            <input
-              type="checkbox"
-              id="rememberMe"
-              className="mr-2"
-              checked={rememberMe}
-              onChange={() => setRememberMe(!rememberMe)}
-            />
-            <label htmlFor="rememberMe" className="text-white">
-              Remember Me
-            </label>
-          </div>
           <button
             type="button"
             className="w-full bg-main-purple text-white p-1 rounded hover:bg-main-blue hover:text-white mb-4"
             onClick={handleLogin}
           >
-            Login
+            Sign up
           </button>
           <div className="text-center flex">
-            <a href="/signup" className="text-main-purple hover:text-second-purple">
-            Don't have an account? Sign up
+            <a href="/login" className="text-main-purple hover:text-second-purple">
+              Already have an account? Sign in
             </a>
-            <p className="text-white ml-12">
-              <a href="/forgot-password" className="text-main-purple hover:text-second-purple">
-                Forgot password
-              </a>
-            </p>
           </div>
         </form>
       </div>
@@ -69,4 +74,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;

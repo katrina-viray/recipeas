@@ -74,7 +74,7 @@ const Recipes = () => {
                     </div>
 
                     <div className="RecipeList flex items-start pt-9 h-screen">
-                        <div className="bg-white pt-4 pb-1 px-5 rounded-3xl">
+                        <div className="bg-white pt-5 pb-5 px-5 rounded-3xl">
                             <div className="flex flex-col items-start">
                                 <div className="font-bold pb-2 pl-3.5 flex">
                                     <h2 className="pr-64">Name</h2>

@@ -1,7 +1,7 @@
 const RecipeDetails = ({recipe}) => {
     return(
         <div className="">
-            <p>{recipe.title}</p>
+            <p className="pl-3">{recipe.title}</p>
             
         </div>
     )

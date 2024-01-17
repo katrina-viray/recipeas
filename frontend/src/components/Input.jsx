@@ -1,43 +1,48 @@
 import React, { useState } from 'react';
-import Button from '../components/Button.jsx'
+import Button from '../components/Button.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const AddButtonForm = () => {
-  const [title, setTitle] = useState('')
-  const [size, setSize] = useState('')
-  const [time, setTime] = useState('')
-  const [ingredients, setIngredients] = useState([])
-  const [directions, setDirections] = useState([])
+  const [title, setTitle] = useState('');
+  const [size, setSize] = useState('');
+  const [time, setTime] = useState('');
+  const [ingredients, setIngredients] = useState([]);
+  const [directions, setDirections] = useState([]);
   const [error, setError] = useState(null);
+  const [selectedButton, setSelectedButton] = useState(null);
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const recipe = {title, size, time, ingredients, directions}
-    console.log({recipe})
+    const recipe = { selectedButton, title, size, time, ingredients, directions };
+    console.log({ recipe });
     const response = await fetch('http://localhost:4000/api/recipes', {
-      method: 'POST', 
+      method: 'POST',
       body: JSON.stringify(recipe),
       headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-    const json = await response.json()
+        'Content-Type': 'application/json',
+      },
+    });
+    const json = await response.json();
 
-    if (!response.ok){
-      setError(json.error)
+    if (!response.ok) {
+      setError(json.error);
+    } else {
+      setSelectedButton(null)
+      setTitle('');
+      setSize('');
+      setTime('');
+      setIngredients([]);
+      setDirections([]);
+      setError(null);
+      console.log('New recipe added', json);
     }
-    else {
-      setTitle('')
-      setSize('')
-      setTime('')
-      setIngredients([])
-      setDirections([])
-      setError(null)
-      console.log('New recipe added', json)
-    }
-  }
+  };
+
+  const handleClick = (buttonTitle) => {
+    setSelectedButton(buttonTitle);
+  };
 
   const handleAddIngredients = () => {
     const newId = ingredients.length + 1;
@@ -65,21 +70,41 @@ const AddButtonForm = () => {
         <p className="text-white pb-2">Which type of food would you like to add?</p>
 
         <div className="py-1.5 flex">
-            <Button title="Breakfast"/>
-            <div className="pl-2">
-                <Button title="Lunch" />
-            </div>
+          <Button
+            title="Breakfast"
+            onClick={() => handleClick('Breakfast')}
+            isClicked={selectedButton === 'Breakfast'}
+          />
+          <div className="pl-2">
+            <Button
+              title="Lunch"
+              onClick={() => handleClick('Lunch')}
+              isClicked={selectedButton === 'Lunch'}
+            />
+          </div>
         </div>
 
         <div className="py-1.5 flex">
-            <Button title="Dinner"/>
-            <div className="pl-2">
-                <Button title="Dessert" />
-            </div>
+          <Button
+            title="Dinner"
+            onClick={() => handleClick('Dinner')}
+            isClicked={selectedButton === 'Dinner'}
+          />
+          <div className="pl-2">
+            <Button
+              title="Dessert"
+              onClick={() => handleClick('Dessert')}
+              isClicked={selectedButton === 'Dessert'}
+            />
+          </div>
         </div>
 
         <div className="py-1.5 pr-9">
-            <Button title="Snacks" />
+          <Button
+            title="Snacks"
+            onClick={() => handleClick('Snacks')}
+            isClicked={selectedButton === 'Snacks'}
+          />
         </div>
 
         <p className="text-white pt-6">Title</p>

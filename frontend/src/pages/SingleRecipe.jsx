@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import RecipeDetails from '../components/RecipeDetails'
 import logo from '../assets/single-recipe-logo.png'
 import Header from '../components/RecipeHeader.jsx'
 import List from '@mui/material/List';

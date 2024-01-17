@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import RecipeDetails from '../components/RecipeDetails'
 import Header from '../components/RecipeHeader.jsx'
 import Button from '../components/Button.jsx'
 import Dropdown from '../components/Dropdown.jsx'
@@ -99,7 +100,7 @@ const Recipes = () => {
 
                                 {recipes && recipes.map((recipe) => (
                                     <div className="recipe-preview" key={recipe.id}>
-                                        <p key={recipe._id}>{recipe.title}</p>
+                                       <RecipeDetails key={recipe._id} recipe={recipe} />
                                     </div>
                                 ))}
                             </div>

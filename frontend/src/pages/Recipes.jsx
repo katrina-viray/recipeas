@@ -77,30 +77,15 @@ const Recipes = () => {
                         <div className="bg-white pt-4 pb-1 px-5 rounded-3xl">
                             <div className="flex flex-col items-start">
                                 <div className="font-bold pb-2 pl-3.5 flex">
-                                    <h2 className="pr-24">Name</h2>
-                                    <h2 className="pr-12">Tags</h2>
+                                    <h2 className="pr-64">Name</h2>
+                                    <h2 className="pr-36">Tags</h2>
                                     <h2 className="">Favorite</h2>
                                 </div>
-
-                                <List sx={style}>
-                                    <Divider variant="middle" component="li" />
-                                    <ListItem>
-                                        <div className="pr-16">
-                                            <ListItemText primary={"Apple Pie"} />
-                                        </div>
-                                        <div className="pr-8">
-                                            <ListItemText primary={"Dessert"} />
-                                        </div>
-                                        <div className="">
-                                            <ListItemText primary={"Favorite"} />
-                                        </div>
-                                    </ListItem>
-                                    
-                                </List>
-
+                                <Divider orientation="horizontal" flexItem style={{ width: '600px', margin: '5px 0' }} />
                                 {recipes && recipes.map((recipe) => (
                                     <div className="recipe-preview" key={recipe.id}>
                                        <RecipeDetails key={recipe._id} recipe={recipe} />
+                                       <Divider orientation="horizontal" flexItem style={{ width: '600px', margin: '5px 0' }} />
                                     </div>
                                 ))}
                             </div>

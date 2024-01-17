@@ -4,15 +4,39 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const AddButtonForm = () => {
+  const [title, setTitle] = useState('')
   const [size, setSize] = useState('')
   const [time, setTime] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [directions, setDirections] = useState([])
-
-  const [inputBars, setInputBars] = useState([]);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    const recipe = {title, size, time, ingredients, directions}
+    console.log({recipe})
+    const response = await fetch('http://localhost:4000/api/recipes', {
+      method: 'POST', 
+      body: JSON.stringify(recipe),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const json = await response.json()
+
+    if (!response.ok){
+      setError(json.error)
+    }
+    else {
+      setTitle('')
+      setSize('')
+      setTime('')
+      setIngredients([])
+      setDirections([])
+      setError(null)
+      console.log('New recipe added', json)
+    }
   }
 
   const handleAddIngredients = () => {
@@ -58,7 +82,14 @@ const AddButtonForm = () => {
             <Button title="Snacks" />
         </div>
 
-        <p className="text-white pt-6">Serving Size</p>
+        <p className="text-white pt-6">Title</p>
+        <input type="text" 
+        placeholder="E.g. Apple pie"
+        onChange={(e) => setTitle(e.target.value)}
+        value = {title}
+        className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
+
+        <p className="text-white pt-4">Serving Size</p>
         <input type="text" 
         placeholder="E.g. 1 serving"
         onChange={(e) => setSize(e.target.value)}
@@ -146,6 +177,7 @@ const AddButtonForm = () => {
           hover:outline-none font-bold py-1.5 w-36
           rounded-full">Save Recipe</button>
         </div>
+        {error && <div>{error}</div> }
       </form>
     </div>
   );

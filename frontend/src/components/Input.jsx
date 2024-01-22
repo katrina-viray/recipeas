@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Button from '../components/Button.jsx';
+import {useRecipesContext } from '../hooks/useRecipesContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const AddButtonForm = () => {
+  const { dispatch } = useRecipesContext()
   const [title, setTitle] = useState('');
   const [size, setSize] = useState('');
   const [time, setTime] = useState('');
@@ -37,6 +39,7 @@ const AddButtonForm = () => {
       setDirections([]);
       setError(null);
       console.log('New recipe added', json);
+      dispatch({type: 'CREATE_RECIPE', payload: json})
     }
   };
 

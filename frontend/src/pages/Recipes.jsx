@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import {useRecipesContext } from '../hooks/useRecipesContext'
 import RecipeDetails from '../components/RecipeDetails'
 import Header from '../components/RecipeHeader.jsx'
 import Button from '../components/Button.jsx'
@@ -17,7 +18,8 @@ const style = {
   };
 
 const Recipes = () => {
-    const [recipes, setRecipes] = useState(null);
+    // const [recipes, setRecipes] = useState(null);
+    const {recipes, dispatch} = useRecipesContext()
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -25,7 +27,10 @@ const Recipes = () => {
             const json = await response.json()
 
             if(response.ok){
-                setRecipes(json)
+                //setRecipes(json)
+                
+                // payload returns the full array of data
+                dispatch({type: 'SET_WORKOUTS', payload: json})
             }
         }
 

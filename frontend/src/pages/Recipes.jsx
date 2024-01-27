@@ -20,6 +20,8 @@ const style = {
 const Recipes = () => {
     // const [recipes, setRecipes] = useState(null);
     const {recipes, dispatch} = useRecipesContext()
+    const [selectedButton, setSelectedButton] = useState('');
+
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -37,6 +39,10 @@ const Recipes = () => {
         fetchRecipes()
     }, [])
 
+    const handleClick = (buttonTitle) => {
+      setSelectedButton(buttonTitle);
+    };
+
     return(
         <div className="flex flex-col h-full min-h-screen bg-main-gray">
             <Header title="Recipes" logo={logo} />
@@ -48,23 +54,43 @@ const Recipes = () => {
                     </div>
                                     
                     <div className="py-3 pt-10 pr-9">
-                        <Button title="Breakfast"/>
+                    <Button
+                      title="Breakfast"
+                      onClick={() => handleClick('Breakfast')}
+                      isClicked={selectedButton === 'Breakfast'}
+                    />
                     </div>
 
                     <div className="py-3 pr-9">
-                        <Button title="Lunch" />
+                    <Button
+                      title="Lunch"
+                      onClick={() => handleClick('Lunch')}
+                      isClicked={selectedButton === 'Lunch'}
+                    />
                     </div>
 
                     <div className="py-3 pr-9">
-                        <Button title="Dinner" />
+                    <Button
+                      title="Dinner"
+                      onClick={() => handleClick('Dinner')}
+                      isClicked={selectedButton === 'Dinner'}
+                    />
                     </div>
 
                     <div className="py-3 pr-9">
-                        <Button title="Dessert" />
+                    <Button
+                      title="Dessert"
+                      onClick={() => handleClick('Dessert')}
+                      isClicked={selectedButton === 'Dessert'}
+                    />
                     </div>
 
                     <div className="py-3 pr-9">
-                        <Button title="Snacks" />
+                    <Button
+                      title="Snacks"
+                      onClick={() => handleClick('Snacks')}
+                      isClicked={selectedButton === 'Snacks'}
+                    />
                     </div>
                 </div>
 

@@ -8,6 +8,7 @@ const Button = ({title, onClick, isClicked}) => {
                 ${isClicked ? 'hover:bg-blue-500': 'hover:bg-gray-300'} hover:border
                 border-solid border font-bold py-1.5 w-36 rounded-full hover:drop-shadow data-te-ripple-radius`}
                 onClick={onClick}
+                type='button'
                 >{title}
             </button>
         </div>

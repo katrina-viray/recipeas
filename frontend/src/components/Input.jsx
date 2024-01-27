@@ -12,14 +12,18 @@ const AddButtonForm = () => {
   const [ingredients, setIngredients] = useState([]);
   const [directions, setDirections] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedButton, setSelectedButton] = useState(null);
+  const [selectedButton, setSelectedButton] = useState('');
   const [emptyFields, setEmptyFields] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const recipe = { selectedButton, title, size, time, ingredients, directions };
-    console.log({ recipe });
+    for (const key in recipe) {
+      console.log(`${key}: ${recipe[key]}`);
+    }
+    console.log(ingredients);
+   
     const response = await fetch('http://localhost:4000/api/recipes', {
       method: 'POST',
       body: JSON.stringify(recipe),
@@ -33,7 +37,7 @@ const AddButtonForm = () => {
       setError(json.error);
       setEmptyFields(json.emptyFields);
     } else {
-      setSelectedButton(null)
+      setSelectedButton('')
       setTitle('');
       setSize('');
       setTime('');
@@ -69,8 +73,6 @@ const AddButtonForm = () => {
     const updatedDirections = directions.filter((bar) => bar.id !== id);
     setDirections(updatedDirections);
   };
-  console.log(emptyFields);
-  console.log('hi');
 
   return (
     <div>
@@ -131,7 +133,7 @@ const AddButtonForm = () => {
         placeholder="E.g. 1 serving"
         onChange={(e) => setSize(e.target.value)}
         value = {size}
-        className={emptyFields.includes('servingSize') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
+        className={emptyFields.includes('size') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
         />
 
         <p className="text-white pt-4">Cook Time</p>
@@ -155,6 +157,7 @@ const AddButtonForm = () => {
                 <button
                     onClick={() => handleDeleteIngredients(ingredient.id)}
                     className="text-black hover:text-second-purple"
+                    type='button'
                 >
                     <FontAwesomeIcon icon={faTrash} />
                 </button>
@@ -170,6 +173,7 @@ const AddButtonForm = () => {
             <button
               onClick={handleAddIngredients}
               className="bg-white text-main-purple hover:bg-main-blue hover:text-white py-1 px-2 rounded-3xl ml-3"
+              type='button'
             >
               <FontAwesomeIcon icon={faPlus} />
             </button>
@@ -189,6 +193,7 @@ const AddButtonForm = () => {
                   <button
                       onClick={() => handleDeleteDirections(direction.id)}
                       className="text-black hover:text-second-purple"
+                      type='button'
                   >
                       <FontAwesomeIcon icon={faTrash} />
                   </button>
@@ -204,6 +209,7 @@ const AddButtonForm = () => {
               <button
                 onClick={handleAddDirections}
                 className="bg-white text-main-purple hover:bg-main-blue hover:text-white py-1 px-2 rounded-3xl ml-3"
+                type='button'
               >
                 <FontAwesomeIcon icon={faPlus} />
               </button>
@@ -211,7 +217,8 @@ const AddButtonForm = () => {
         </div>
 
         <div className="flex justify-center item-center pt-9 pr-8">
-          <button className="bg-second-purple text-white hover:bg-main-blue
+          <button type="submit"
+          className="bg-second-purple text-white hover:bg-main-blue
           hover:text-white hover:border-slate-500 hover:drop-shadow 
           hover:outline-none font-bold py-1.5 w-36
           rounded-full">Save Recipe</button>

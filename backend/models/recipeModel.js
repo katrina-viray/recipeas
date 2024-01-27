@@ -20,11 +20,11 @@ const recipeSchema = new Schema({
     }, 
     ingredients: {
       type: [String],
-      required: true
+      //required: true
     }, 
     steps: {
         type: [String],
-        required: true
+        //required: true
     },
     favorite: {
         type: Boolean,

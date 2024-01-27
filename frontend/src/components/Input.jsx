@@ -76,6 +76,9 @@ const AddButtonForm = () => {
     <div>
       <form className="" onSubmit={handleSubmit}>
         <p className="text-white pb-2">Which type of food would you like to add?</p>
+        {emptyFields.includes('type') ?  <p className="text-white font-bold">
+          Please select one below* </p> :
+          ""}
 
         <div className="py-1.5 flex">
           <Button
@@ -128,14 +131,16 @@ const AddButtonForm = () => {
         placeholder="E.g. 1 serving"
         onChange={(e) => setSize(e.target.value)}
         value = {size}
-        className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
+        className={emptyFields.includes('servingSize') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
+        />
 
         <p className="text-white pt-4">Cook Time</p>
         <input type="text"
         placeholder="E.g. 1 hour"
         onChange={(e) => setTime(e.target.value)}
         value = {time}
-        className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
+        className={emptyFields.includes('time') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
+        />
 
         <p className="text-white pt-4">Ingredients</p>
         <div className="relative w-full" >
@@ -143,7 +148,7 @@ const AddButtonForm = () => {
             <div key={ingredient.id} className="relative mb-4 flex items-center">
               <input
                 type="text"
-                className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"
+                className={emptyFields.includes('ingredients') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
                 placeholder="Type here..."
               />
               <div className="pl-5">
@@ -159,7 +164,7 @@ const AddButtonForm = () => {
           <div className="relative flex items-center">
             <input
               type="text"
-              className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"
+              className={emptyFields.includes('ingredients') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
               placeholder="Type here..."
             />
             <button
@@ -177,7 +182,7 @@ const AddButtonForm = () => {
               <div key={direction.id} className="relative mb-4 flex items-center">
                 <input
                   type="text"
-                  className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"
+                  className={emptyFields.includes('directions') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
                   placeholder="Type here..."
                 />
                 <div className="pl-5">
@@ -193,7 +198,7 @@ const AddButtonForm = () => {
             <div className="relative flex items-center">
               <input
                 type="text"
-                className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"
+                className={emptyFields.includes('directions') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
                 placeholder="Type here..."
               />
               <button
@@ -205,13 +210,16 @@ const AddButtonForm = () => {
             </div>
         </div>
 
-        <div className="flex justify-center item-center pt-9">
+        <div className="flex justify-center item-center pt-9 pr-8">
           <button className="bg-second-purple text-white hover:bg-main-blue
           hover:text-white hover:border-slate-500 hover:drop-shadow 
           hover:outline-none font-bold py-1.5 w-36
           rounded-full">Save Recipe</button>
         </div>
-        {error && <div>{error}</div> }
+        
+        <div className="pt-4 pr-8">
+          {error && <div className="w-64 mx-auto text-center pt-2 pb-2 text-red-500 bg-red-50 border-2 border-red-500 rounded-lg">{error}</div> }
+        </div>
       </form>
     </div>
   );

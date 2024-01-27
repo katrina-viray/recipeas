@@ -14,6 +14,10 @@ export const recipesReducer = (state, action) => {
         // adding new recipe and then appending already existing ones with ...
         recipes: [action.payload, ...state.recipes]
       }
+    case 'DELETE_RECIPE':
+    return {
+      recipes: state.recipes.filter((r) => r._id !== action.payload._id)
+    }
     default:
       return state
   }

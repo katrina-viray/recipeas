@@ -11,17 +11,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { Link } from 'react-router-dom';
 
-const style = {
-    py: 0,
-    width: '100%',
-    maxWidth: 360,
-  };
 
 const Recipes = () => {
     // const [recipes, setRecipes] = useState(null);
     const {recipes, dispatch} = useRecipesContext()
     const [selectedButton, setSelectedButton] = useState('');
-
+    const [lineCount, setLineCount] = useState(recipes ? recipes.length : 0);
+    //const [additionalLinesNeeded, setAdditionalLinesNeeded] = Math.max(10 - lineCount, 0);
+    const additionalLinesNeeded = Math.max(10 - lineCount, 0);
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -41,6 +38,8 @@ const Recipes = () => {
 
     const handleClick = (buttonTitle) => {
       setSelectedButton(buttonTitle);
+      setLineCount(recipes.length);
+      //setAdditionalLinesNeeded(Math.max(10 - lineCount, 0));
     };
 
     return(
@@ -99,7 +98,7 @@ const Recipes = () => {
                         <input type="search" placeholder="Search for your recipe here"
                         className="border border-main-purple bg-white h-12 pl-10 w-96 \
                         rounded-3xl text-sm focus:outline-none" />
-                        <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+                        <button type="submit" className="absolute right-0 top-0 mt-5 mr-4">
                             
                         </button>
                     </div>
@@ -112,13 +111,19 @@ const Recipes = () => {
                                     <h2 className="pr-36">Tags</h2>
                                     <h2 className="">Favorite</h2>
                                 </div>
-                                <Divider orientation="horizontal" flexItem style={{ width: '600px', margin: '5px 0' }} />
+                                <div className="pb-3">
+                                  <Divider orientation="horizontal" flexItem style={{ width: '600px', margin: '5px 0' }} />
+                                </div>
                                 {recipes && recipes.map((recipe) => (
                                     <div className="recipe-preview" key={recipe.id}>
                                        <RecipeDetails key={recipe._id} recipe={recipe} />
-                                       <Divider orientation="horizontal" flexItem style={{ width: '600px', margin: '5px 0' }} />
+                                       <Divider orientation="horizontal" flexItem style={{ width: '600px', margin: '16px 0' }} />
                                     </div>
                                 ))}
+
+                        {Array.from({ length: additionalLinesNeeded }).map((_, index) => (
+                          <Divider key={`additional-line-${index}`} orientation="horizontal" flexItem style={{ width: '600px', margin: '20px 0' }} />
+                        ))}
                             </div>
                         </div>
                     </div>

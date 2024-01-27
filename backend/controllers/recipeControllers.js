@@ -29,6 +29,30 @@ const createRecipe = async (req, res) => {
   console.log(req.body)
     const {type, title, servingSize, time, ingredients, steps} = req.body;
 
+    let emptyFields = [];
+
+    if(!type){
+      emptyFields.push('type');
+    }
+    if(!title){
+      emptyFields.push('title');
+    }
+    if(!servingSize){
+      emptyFields.push('servingSize');
+    }
+    if(!time){
+      emptyFields.push('time');
+    }
+    if(!ingredients){
+      emptyFields.push('ingredients');
+    }
+    if(!steps){
+      emptyFields.push('steps');
+    }
+    if(emptyFields.length > 0){
+      return res.status(400).json({ error: 'Please fill in the missing fields.', emptyFields});
+    }
+
     // add new doc to the database
     try{
         const recipe = await Recipe.create({

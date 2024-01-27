@@ -1,13 +1,28 @@
-import { useParams } from "react-router-dom";
-import RecipeDetails from '../components/RecipeDetails'
+import {useRecipesContext } from '../hooks/useRecipesContext'
 import logo from '../assets/single-recipe-logo.png'
-import Header from '../components/RecipeHeader.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import Header from '../components/RecipeHeader.jsx';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
-const SingleRecipe = () => {
+const SingleRecipe = ({recipe}) => {
+  const {dispatch} = useRecipesContext()
+
+  const handleClick = async () => {
+    const response = await fetch('/api/recipes/' + recipe._id, {
+      method: 'DELETE'
+    })
+    // document which is just deleted is saved in json
+    const json = await response.json()
+
+    if (response.ok){
+      dispatch({type: 'DELETE_RECIPE', payload: json})
+    }
+  }
+
     return (
         //const { id } = useParams();
         <div className="flex flex-col h-full min-h-screen bg-main-gray items-center">
@@ -26,8 +41,14 @@ const SingleRecipe = () => {
                         </div>
                         <Divider orientation="vertical" flexItem style={{ height: '50px' }} />
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                            <div>
+                            <div className = "flex">
                             <p>Cook Time:</p>
+                            <button
+                              onClick={() => handleClick(direction.id)}
+                              className="text-black hover:text-second-purple"
+                            >
+                              <FontAwesomeIcon icon={faTrash} />
+                            </button>
                             </div>
                             <Divider orientation="vertical" flexItem />
                             <div>

@@ -13,6 +13,7 @@ const AddButtonForm = () => {
   const [directions, setDirections] = useState([]);
   const [error, setError] = useState(null);
   const [selectedButton, setSelectedButton] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +31,7 @@ const AddButtonForm = () => {
 
     if (!response.ok) {
       setError(json.error);
+      setEmptyFields(json.emptyFields);
     } else {
       setSelectedButton(null)
       setTitle('');
@@ -38,6 +40,7 @@ const AddButtonForm = () => {
       setIngredients([]);
       setDirections([]);
       setError(null);
+      setEmptyFields([]);
       console.log('New recipe added', json);
       dispatch({type: 'CREATE_RECIPE', payload: json})
     }
@@ -66,6 +69,8 @@ const AddButtonForm = () => {
     const updatedDirections = directions.filter((bar) => bar.id !== id);
     setDirections(updatedDirections);
   };
+  console.log(emptyFields);
+  console.log('hi');
 
   return (
     <div>
@@ -115,7 +120,8 @@ const AddButtonForm = () => {
         placeholder="E.g. Apple pie"
         onChange={(e) => setTitle(e.target.value)}
         value = {title}
-        className="rounded-md pl-3 py-1.5 pr-24 focus:outline-none"/>
+        className={emptyFields.includes('title') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
+        />
 
         <p className="text-white pt-4">Serving Size</p>
         <input type="text" 

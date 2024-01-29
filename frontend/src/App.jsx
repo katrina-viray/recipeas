@@ -22,7 +22,7 @@ function App() {
               <Route path="/add" element={<Add />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/recipes/singleRecipe" element={<SingleRecipe />} />
+              <Route path="/recipes/:id" element={<SingleRecipe />} />
               <Route path='*' element={<NotFound />}/>
             </Routes>
           </div>

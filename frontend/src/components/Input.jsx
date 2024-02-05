@@ -7,18 +7,18 @@ import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 const AddButtonForm = () => {
   const { dispatch } = useRecipesContext()
   const [title, setTitle] = useState('');
-  const [size, setSize] = useState('');
+  const [servingSize, setServingSize] = useState('');
   const [time, setTime] = useState('');
   const [ingredients, setIngredients] = useState([]);
   const [directions, setDirections] = useState([]);
   const [error, setError] = useState(null);
-  const [selectedButton, setSelectedButton] = useState('');
+  const [type, setType] = useState('');
   const [emptyFields, setEmptyFields] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const recipe = { selectedButton, title, size, time, ingredients, directions };
+    const recipe = { type, title, servingSize, time, ingredients, directions };
     for (const key in recipe) {
       console.log(`${key}: ${recipe[key]}`);
     }
@@ -37,9 +37,9 @@ const AddButtonForm = () => {
       setError(json.error);
       setEmptyFields(json.emptyFields);
     } else {
-      setSelectedButton('')
+      setType('')
       setTitle('');
-      setSize('');
+      setServingSize('');
       setTime('');
       setIngredients([]);
       setDirections([]);
@@ -51,7 +51,7 @@ const AddButtonForm = () => {
   };
 
   const handleClick = (buttonTitle) => {
-    setSelectedButton(buttonTitle);
+    setType(buttonTitle);
   };
 
   const handleAddIngredients = () => {
@@ -86,13 +86,13 @@ const AddButtonForm = () => {
           <Button
             title="Breakfast"
             onClick={() => handleClick('Breakfast')}
-            isClicked={selectedButton === 'Breakfast'}
+            isClicked={type === 'Breakfast'}
           />
           <div className="pl-2">
             <Button
               title="Lunch"
               onClick={() => handleClick('Lunch')}
-              isClicked={selectedButton === 'Lunch'}
+              isClicked={type === 'Lunch'}
             />
           </div>
         </div>
@@ -101,13 +101,13 @@ const AddButtonForm = () => {
           <Button
             title="Dinner"
             onClick={() => handleClick('Dinner')}
-            isClicked={selectedButton === 'Dinner'}
+            isClicked={type === 'Dinner'}
           />
           <div className="pl-2">
             <Button
               title="Dessert"
               onClick={() => handleClick('Dessert')}
-              isClicked={selectedButton === 'Dessert'}
+              isClicked={type === 'Dessert'}
             />
           </div>
         </div>
@@ -116,7 +116,7 @@ const AddButtonForm = () => {
           <Button
             title="Snacks"
             onClick={() => handleClick('Snacks')}
-            isClicked={selectedButton === 'Snacks'}
+            isClicked={type === 'Snacks'}
           />
         </div>
 
@@ -131,9 +131,9 @@ const AddButtonForm = () => {
         <p className="text-white pt-4">Serving Size</p>
         <input type="text" 
         placeholder="E.g. 1 serving"
-        onChange={(e) => setSize(e.target.value)}
-        value = {size}
-        className={emptyFields.includes('size') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
+        onChange={(e) => setServingSize(e.target.value)}
+        value = {servingSize}
+        className={emptyFields.includes('servingSize') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
         />
 
         <p className="text-white pt-4">Cook Time</p>

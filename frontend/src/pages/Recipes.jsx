@@ -126,7 +126,7 @@ const Recipes = () => {
                                 <Divider orientation="horizontal" flexItem style={{ width: '600px', margin: '3px 0' }} />
                               </div>
                               {recipes && recipes.map((recipe) => (
-                                  <div className="recipe-preview" key={recipe.id}>
+                                  <div className="recipe-preview flex flex-wrap justify-between" key={recipe.id}>
                                       <RecipeDetails key={recipe._id} recipe={recipe} />
                                       <Divider orientation="horizontal" flexItem style={{ width: '600px', margin: '8px 0' }} />
                                   </div>

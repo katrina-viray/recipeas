@@ -10,7 +10,7 @@ const AddButtonForm = () => {
   const [servingSize, setServingSize] = useState('');
   const [time, setTime] = useState('');
   const [ingredients, setIngredients] = useState([]);
-  const [directions, setDirections] = useState([]);
+  const [steps, setSteps] = useState([]);
   const [error, setError] = useState(null);
   const [type, setType] = useState('');
   const [emptyFields, setEmptyFields] = useState([]);
@@ -18,7 +18,7 @@ const AddButtonForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const recipe = { type, title, servingSize, time, ingredients, directions };
+    const recipe = { type, title, servingSize, time, ingredients, steps };
     for (const key in recipe) {
       console.log(`${key}: ${recipe[key]}`);
     }
@@ -42,7 +42,7 @@ const AddButtonForm = () => {
       setServingSize('');
       setTime('');
       setIngredients([]);
-      setDirections([]);
+      setSteps([]);
       setError(null);
       setEmptyFields([]);
       console.log('New recipe added', json);
@@ -65,13 +65,13 @@ const AddButtonForm = () => {
   };
 
   const handleAddDirections = () => {
-    const newId = directions.length + 1;
-    setDirections([...directions, { id: newId }]);
+    const newId = steps.length + 1;
+    setSteps([...steps, { id: newId }]);
   };
 
   const handleDeleteDirections = (id) => {
-    const updatedDirections = directions.filter((bar) => bar.id !== id);
-    setDirections(updatedDirections);
+    const updatedDirections = steps.filter((bar) => bar.id !== id);
+    setSteps(updatedDirections);
   };
 
   return (
@@ -182,11 +182,11 @@ const AddButtonForm = () => {
 
         <p className="text-white pt-4">Directions</p>
         <div className="relative w-full">
-          {directions.map((direction) => (
+          {steps.map((direction) => (
               <div key={direction.id} className="relative mb-4 flex items-center">
                 <input
                   type="text"
-                  className={emptyFields.includes('directions') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
+                  className={emptyFields.includes('steps') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
                   placeholder="Type here..."
                 />
                 <div className="pl-5">
@@ -203,7 +203,7 @@ const AddButtonForm = () => {
             <div className="relative flex items-center">
               <input
                 type="text"
-                className={emptyFields.includes('directions') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
+                className={emptyFields.includes('steps') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
                 placeholder="Type here..."
               />
               <button

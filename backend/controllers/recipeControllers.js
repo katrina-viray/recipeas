@@ -26,7 +26,6 @@ const getRecipe = async (req, res) => {
 
 // CREATE new recipe
 const createRecipe = async (req, res) => {
-  console.log(req.body)
     const {type, title, servingSize, time, ingredients, steps} = req.body;
 
     let emptyFields = [];
@@ -36,6 +35,7 @@ const createRecipe = async (req, res) => {
     }
     if(!title){
       emptyFields.push('title');
+      console.log('title')
     }
     if(!servingSize){
       emptyFields.push('servingSize');

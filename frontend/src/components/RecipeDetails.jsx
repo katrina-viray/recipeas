@@ -1,15 +1,18 @@
-import { Link } from 'react-router-dom';
+// RecipeDetails.jsx
 import React, { useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Link } from 'react-router-dom';
+import Divider from '@mui/material/Divider';
 
-const RecipeDetails = ({ recipe }) => {
+
+const RecipeDetails = ({ recipe, handleUpdateRecipe }) => {
   const [isFilled, setIsFilled] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     setIsFilled(!isFilled);
 
-    /*
+  /*
     const response = await fetch('/api/recipes/' + recipe._id, {
       method: 'UPDATE',
     });
@@ -23,28 +26,32 @@ const RecipeDetails = ({ recipe }) => {
     setIsModalOpen(false); // Close the modal after deleting
   };
   */
-
   };
 
   const titlePadding = Math.max(0, 64 - recipe.title.length);
   const typePadding = Math.max(0, 36 - recipe.type.length);
 
   return (
-    <div className="flex">
-      <Link to={`/recipes/${recipe._id}`}>
-        <p className={`pl-3 pr-${titlePadding}`}>{recipe.title}</p>
-      </Link>
+    <tr className="border-b">
+      <td className="">
+        <Link to={`/recipes/${recipe._id}`}>
+          <p className="pl-3">{recipe.title}</p>
+        </Link>
+      </td>
 
-      <div className={`pl-3 pr-${typePadding}`}>
-        <p className="bg-main-blue py-0.5 px-4 rounded-3xl">
+      <td className="py-1.5">
+        <p className="bg-main-blue py-0.5 px-4 rounded-3xl inline-block">
           {recipe.type}
         </p>
-      </div>
+      </td>
 
-      <div className="pl-5" onClick={handleClick}>
-        {isFilled ? <FavoriteIcon className="text-main-purple" /> : <FavoriteBorderIcon className="text-slate-300" />}
-      </div>
-    </div>
+      <td className="pl-6">
+        <div onClick={handleClick}>
+          {isFilled ? <FavoriteIcon className="text-main-purple" /> : <FavoriteBorderIcon className="text-slate-300" />}
+        </div>
+      </td>
+    </tr>
+
   );
 };
 

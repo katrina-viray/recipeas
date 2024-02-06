@@ -116,26 +116,26 @@ const Recipes = () => {
 
                   <div className="RecipeList flex items-start pt-9 h-screen">
                       <div className="bg-white pt-5 pb-5 px-5 rounded-3xl">
-                          <div className="flex flex-col items-start">
-                              <div className="font-bold pb-1 pl-3.5 flex">
-                                  <h2 className="pr-64">Name</h2>
-                                  <h2 className="pr-36">Tags</h2>
-                                  <h2 className="">Favorite</h2>
-                              </div>
-                              <div className="pb-1">
-                                <Divider orientation="horizontal" flexItem style={{ width: '600px', margin: '3px 0' }} />
-                              </div>
-                              {recipes && recipes.map((recipe) => (
-                                  <div className="recipe-preview flex flex-wrap justify-between" key={recipe.id}>
-                                      <RecipeDetails key={recipe._id} recipe={recipe} />
-                                      <Divider orientation="horizontal" flexItem style={{ width: '600px', margin: '8px 0' }} />
-                                  </div>
-                              ))}
-                              <div className="pb-3"></div>
+                          <div className="flex flex-col">
+                            <table className="">
+                              <thead className="pb-1">
+                                <tr className="border-b font-bold pb-1 pl-3.5">
+                                    <th className="pr-64">Name</th>
+                                    <th className="pr-36">Tags</th>
+                                    <th className="">Favorite</th>
+                                </tr>
+                              </thead>
+                              <tbody className="pb-1">
+                                {recipes && recipes.map((recipe) => (
+                                  <RecipeDetails key={recipe._id} recipe={recipe} />
+                                ))}
+                              </tbody>
+                            </table>
+                          <div className="pb-4"></div>
 
-                      {Array.from({ length: additionalLinesNeeded }).map((_, index) => (
-                        <Divider key={`additional-line-${index}`} orientation="horizontal" flexItem style={{ width: '600px', margin: '20px 0' }} />
-                      ))}
+                        {Array.from({ length: additionalLinesNeeded }).map((_, index) => (
+                          <Divider key={`additional-line-${index}`} orientation="horizontal" flexItem style={{ width: '600px', margin: '22px 0' }} />
+                        ))}
                           </div>
                       </div>
                   </div>

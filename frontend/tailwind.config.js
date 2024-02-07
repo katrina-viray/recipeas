@@ -14,7 +14,12 @@ export default {
         'main-purple':'#635BFF',
         'second-purple':'#B55BFF',
         'main-blue':'#5BA5FF',
-        'main-gray':'#D6D4D4'
+        'main-gray':'#D6D4D4',
+        'breakfast-color':'#0CEAD9', 
+        'lunch-color':'#3ACADF', 
+        'dinner-color':'#729EFD', 
+        'dessert-color':'#8A64D6', 
+        'snack-color':'#5C3A92', 
       }
     },
   },

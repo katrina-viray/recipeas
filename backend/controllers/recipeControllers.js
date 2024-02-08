@@ -35,7 +35,6 @@ const createRecipe = async (req, res) => {
     }
     if(!title){
       emptyFields.push('title');
-      console.log('title')
     }
     if(!servingSize){
       emptyFields.push('servingSize');
@@ -43,10 +42,10 @@ const createRecipe = async (req, res) => {
     if(!time){
       emptyFields.push('time');
     }
-    if(!ingredients){
+    if(ingredients.includes('')){
       emptyFields.push('ingredients');
     }
-    if(!steps){
+    if(steps.includes('')){
       emptyFields.push('steps');
     }
     if(emptyFields.length > 0){

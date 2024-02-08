@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Link } from 'react-router-dom';
-import Divider from '@mui/material/Divider';
 
 
 const RecipeDetails = ({ recipe, handleUpdateRecipe }) => {

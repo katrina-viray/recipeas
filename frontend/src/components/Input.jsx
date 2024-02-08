@@ -9,8 +9,8 @@ const AddButtonForm = () => {
   const [title, setTitle] = useState('');
   const [servingSize, setServingSize] = useState('');
   const [time, setTime] = useState('');
-  const [ingredients, setIngredients] = useState([]);
-  const [steps, setSteps] = useState([]);
+  const [ingredients, setIngredients] = useState(['']);
+  const [steps, setSteps] = useState(['']);
   const [error, setError] = useState(null);
   const [type, setType] = useState('');
   const [emptyFields, setEmptyFields] = useState([]);
@@ -22,7 +22,6 @@ const AddButtonForm = () => {
     for (const key in recipe) {
       console.log(`${key}: ${recipe[key]}`);
     }
-    console.log(ingredients);
    
     const response = await fetch('http://localhost:4000/api/recipes', {
       method: 'POST',
@@ -54,24 +53,40 @@ const AddButtonForm = () => {
     setType(buttonTitle);
   };
 
-  const handleAddIngredients = () => {
-    const newId = ingredients.length + 1;
-    setIngredients([...ingredients, { id: newId }]);
+  const handleAddIngredient = () => {
+    setIngredients([...ingredients, '']);
   };
 
-  const handleDeleteIngredients = (id) => {
-    const updatedIngredients = ingredients.filter((bar) => bar.id !== id);
+  const handleIngredientChange = (index, value) => {
+    const updatedIngredients = [...ingredients];
+    updatedIngredients[index] = value;
     setIngredients(updatedIngredients);
   };
 
-  const handleAddDirections = () => {
-    const newId = steps.length + 1;
-    setSteps([...steps, { id: newId }]);
+  const handleRemoveIngredient = (index) => {
+    if (ingredients.length > 1) {
+      const updatedIngredients = [...ingredients];
+      updatedIngredients.splice(index, 1);
+      setIngredients(updatedIngredients);
+    }
   };
 
-  const handleDeleteDirections = (id) => {
-    const updatedDirections = steps.filter((bar) => bar.id !== id);
+  const handleAddDirection = () => {
+    setSteps([...steps, '']);
+  };
+
+  const handleDirectionChange = (index, value) => {
+    const updatedDirections = [...steps];
+    updatedDirections[index] = value;
     setSteps(updatedDirections);
+  };
+
+  const handleRemoveDirection = (index) => {
+    if (steps.length > 1) {
+      const updatedDirections = [...steps];
+      updatedDirections.splice(index, 1);
+      setSteps(updatedDirections);
+    }
   };
 
   return (
@@ -146,33 +161,32 @@ const AddButtonForm = () => {
 
         <p className="text-white pt-4">Ingredients</p>
         <div className="relative w-full" >
-          {ingredients.map((ingredient) => (
-            <div key={ingredient.id} className="relative mb-4 flex items-center">
-              <input
+          {ingredients.map((ingredient, index) => (
+            <div key={index} className="relative mb-4 flex items-center">              
+            <input
                 type="text"
+                value={ingredient}
+                onChange={(e) => handleIngredientChange(index, e.target.value)}
                 className={emptyFields.includes('ingredients') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
                 placeholder="Type here..."
               />
               <div className="pl-5">
-                <button
-                    onClick={() => handleDeleteIngredients(ingredient.id)}
+                {index > 0 && ( 
+                  <button 
+                    type="button" 
+                    onClick={() => handleRemoveIngredient(index)}
                     className="text-black hover:text-second-purple"
-                    type='button'
-                >
+                    >
                     <FontAwesomeIcon icon={faTrash} />
-                </button>
+                  </button>
+                )}
               </div>
             </div>
           ))}
           <div className="relative flex items-center">
-            <input
-              type="text"
-              className={emptyFields.includes('ingredients') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
-              placeholder="Type here..."
-            />
             <button
-              onClick={handleAddIngredients}
-              className="bg-white text-main-purple hover:bg-main-blue hover:text-white py-1 px-2 rounded-3xl ml-3"
+              onClick={handleAddIngredient}
+              className="bg-second-purple text-white hover:bg-main-blue py-1 px-7 rounded-xl ml-56"
               type='button'
             >
               <FontAwesomeIcon icon={faPlus} />
@@ -181,39 +195,38 @@ const AddButtonForm = () => {
         </div>
 
         <p className="text-white pt-4">Directions</p>
-        <div className="relative w-full">
-          {steps.map((direction) => (
-              <div key={direction.id} className="relative mb-4 flex items-center">
-                <input
-                  type="text"
-                  className={emptyFields.includes('steps') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
-                  placeholder="Type here..."
-                />
-                <div className="pl-5">
-                  <button
-                      onClick={() => handleDeleteDirections(direction.id)}
-                      className="text-black hover:text-second-purple"
-                      type='button'
-                  >
-                      <FontAwesomeIcon icon={faTrash} />
-                  </button>
-                </div>
-              </div>
-            ))}
-            <div className="relative flex items-center">
-              <input
+        <div className="relative w-full" >
+          {steps.map((direction, index) => (
+            <div key={index} className="relative mb-4 flex items-center">
+            <input
                 type="text"
+                value={direction}
+                onChange={(e) => handleDirectionChange(index, e.target.value)}
                 className={emptyFields.includes('steps') ? 'bg-red-50 border-2 border-red-500 rounded-md pl-3 py-1.5 pr-24 focus:outline-none' : 'rounded-md pl-3 py-1.5 pr-24 focus:outline-none'}
                 placeholder="Type here..."
               />
-              <button
-                onClick={handleAddDirections}
-                className="bg-white text-main-purple hover:bg-main-blue hover:text-white py-1 px-2 rounded-3xl ml-3"
-                type='button'
-              >
-                <FontAwesomeIcon icon={faPlus} />
-              </button>
+              <div className="pl-5">
+                {index > 0 && ( 
+                  <button 
+                    type="button" 
+                    onClick={() => handleRemoveDirection(index)}
+                    className="text-black hover:text-second-purple"
+                    >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                )}
+              </div>
             </div>
+          ))}
+          <div className="relative flex items-center">
+            <button
+              onClick={handleAddDirection}
+              className="bg-second-purple text-white hover:bg-main-blue py-1 px-7 rounded-xl ml-56"
+              type='button'
+            >
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
+          </div>
         </div>
 
         <div className="flex justify-center item-center pt-9 pr-8">

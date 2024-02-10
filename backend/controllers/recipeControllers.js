@@ -87,7 +87,7 @@ const updateRecipe = async (req, res) => {
         return res.status(404).json({error: 'No such recipe'});
     }
 
-    const recipe = await Recipe.findOneAndUpdate({_id: id}, ...req.body);
+    const recipe = await Recipe.findOneAndUpdate({_id: id}, req.body);
 
     if(!recipe){
         return res.status(404).json({error: 'No such recipe.'});

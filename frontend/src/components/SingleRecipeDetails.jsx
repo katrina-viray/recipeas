@@ -8,24 +8,28 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import React, { useState } from 'react';
 import ConfirmationModal from '../components/ConfirmationModal.jsx'
+import { useNavigate } from "react-router-dom";
+
 
 const SingleRecipeDetails = ({ recipe }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = async () => {
     setIsModalOpen(true);
   };
 
   const handleConfirmDelete = async () => {
-    const response = await fetch('/api/recipes/' + recipe._id, {
+    const response = await fetch('http://localhost:4000/api/recipes/' + recipe._id, {
       method: 'DELETE',
     });
-    // document which is just deleted is saved in json
-    const json = await response.json();
 
-    if (response.ok) {
-      dispatch({ type: 'DELETE_RECIPE', payload: json });
+    if (!response.ok) {
+      throw new Error('Failed to delete recipe');
     }
+
+    navigate('/recipes');
+
     setIsModalOpen(false); // Close the modal after deleting
   };
 

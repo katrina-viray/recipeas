@@ -11,20 +11,26 @@ const RecipeDetails = ({ recipe, handleUpdateRecipe }) => {
   const handleClick = async () => {
     setIsFilled(!isFilled);
 
-  /*
-    const response = await fetch('/api/recipes/' + recipe._id, {
-      method: 'UPDATE',
+    const response = await fetch('http://localhost:4000/api/recipes/' + recipe._id, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        type: recipe.type,
+        title: recipe.title,
+        servingSize: recipe.servingSize,
+        time: recipe.time,
+        ingredients: recipe.ingredients,
+        steps: recipe.steps,
+        favorite: !isFilled
+      }),
     });
 
-    // document which is just deleted is saved in json
-    const json = await response.json();
-
-    if (response.ok) {
-      dispatch({ type: 'UPDATE_RECIPE', payload: json });
+    if (!response.ok){
+      throw new Error('Failed to update favorite property.');
     }
-    setIsModalOpen(false); // Close the modal after deleting
-  };
-  */
+
   };
 
   const titlePadding = Math.max(0, 64 - recipe.title.length);

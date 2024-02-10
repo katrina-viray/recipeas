@@ -12,7 +12,7 @@ const Add = () => {
 
             <div className="flex items-center justify-center h-screen">
                 <div className="flex items-start pt-8 h-screen">
-                    <div className="bg-main-purple pt-8 pb-8 pl-14 pr-5 rounded-2xl">
+                    <div className="bg-main-purple pt-8 pb-8 pl-14 pr-8 rounded-2xl">
                         <Input />
                     </div>
                 </div>

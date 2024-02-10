@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Button from '../components/Button.jsx';
-import {useRecipesContext } from '../hooks/useRecipesContext'
+//import {useRecipesContext } from '../hooks/useRecipesContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const AddButtonForm = () => {
-  const { dispatch } = useRecipesContext()
+  //const { dispatch } = useRecipesContext()
   const [title, setTitle] = useState('');
   const [servingSize, setServingSize] = useState('');
   const [time, setTime] = useState('');
@@ -40,12 +40,12 @@ const AddButtonForm = () => {
       setTitle('');
       setServingSize('');
       setTime('');
-      setIngredients([]);
-      setSteps([]);
+      setIngredients(['']);
+      setSteps(['']);
       setError(null);
       setEmptyFields([]);
       console.log('New recipe added', json);
-      dispatch({type: 'CREATE_RECIPE', payload: json})
+      // dispatch({type: 'CREATE_RECIPE', payload: json})
     }
   };
 

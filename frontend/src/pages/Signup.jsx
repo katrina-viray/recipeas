@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
+import {useSignup} from '../hooks/useSignup'
 
 const Signup = () => {
   const [first, setFirst] = useState('');
   const [last, setLast] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {signup, error, isLoading} = useSignup()
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleLogin = () => {
-    console.log('Logging in...', { email, password, rememberMe });
+  const handleSignup = async (e) => {
+    // default behavior is to refresh the page, so preventing that
+    e.preventDefault()
+    
+    await signup(email, password)
   };
 
   return (
@@ -57,9 +62,10 @@ const Signup = () => {
             />
           </div>
           <button
+            disabled={isLoading}
+            onClick={handleSignup}
             type="button"
             className="w-full bg-main-purple text-white p-1 rounded hover:bg-main-blue hover:text-white mb-4"
-            onClick={handleLogin}
           >
             Sign up
           </button>
@@ -68,6 +74,8 @@ const Signup = () => {
               Already have an account? Sign in
             </a>
           </div>
+
+          {error && <div>{error}</div>}
         </form>
       </div>
     </div>

@@ -5,8 +5,9 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleLogin = () => {
-    console.log('Logging in...', { email, password, rememberMe });
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    console.log(email, password);
   };
 
   return (

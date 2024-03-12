@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
+import {useLogin} from '../hooks/useLogin'
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const {login, error, isLoading} = useLogin()
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    
+    await login(email, password)
+
   };
 
   return (
@@ -48,6 +52,7 @@ const Login = () => {
             </label>
           </div>
           <button
+            disabled = {isLoading}
             type="button"
             className="w-full bg-main-purple text-white p-1 rounded hover:bg-main-blue hover:text-white mb-4"
             onClick={handleLogin}
@@ -63,6 +68,11 @@ const Login = () => {
                 Forgot password
               </a>
             </p>
+          </div>
+          <div className="pt-5">
+            {error && <div 
+            className=" w-64 mx-auto text-center pt-2 pb-2 text-red-500 bg-red-50 border-2 border-red-500 rounded-lg"
+            >{error}</div>}
           </div>
         </form>
       </div>

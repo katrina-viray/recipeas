@@ -75,7 +75,11 @@ const Signup = () => {
             </a>
           </div>
 
-          {error && <div>{error}</div>}
+          <div className="pt-5">
+            {error && <div 
+            className=" w-64 mx-auto text-center pt-2 pb-2 text-red-500 bg-red-50 border-2 border-red-500 rounded-lg"
+            >{error}</div>}
+          </div>
         </form>
       </div>
     </div>

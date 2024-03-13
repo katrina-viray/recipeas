@@ -6,8 +6,12 @@ const {
     deleteRecipe,
     updateRecipe
 } = require('../controllers/recipeControllers');
+const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router();
+
+// fire this middleware first; authorizes user before other routes
+router.use(requireAuth)
 
 // GET all recipes
 router.get('/', getRecipes);

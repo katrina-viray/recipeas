@@ -1,15 +1,25 @@
 import SingleRecipeDetails from '../components/SingleRecipeDetails'
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
+import {useAuthContext} from '../hooks/useAuthContext'
+
 
 
 const SingleRecipe = () => {
   const [recipe, setRecipe] = useState(null);
   const { id } = useParams();
+  const {user} = useAuthContext()
+
+  
 
   useEffect(() => {
     const fetchRecipe = async () => {
-        const response = await fetch(`http://localhost:4000/api/recipes/${id}`);
+        const response = await fetch(`http://localhost:4000/api/recipes/${id}`, {
+          headers: {
+            'Authorization': `Bearer ${user.token}`
+          }
+        });
+
         const json = await response.json()
 
         if(response.ok){

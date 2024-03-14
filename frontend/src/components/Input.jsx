@@ -3,6 +3,7 @@ import Button from '../components/Button.jsx';
 //import {useRecipesContext } from '../hooks/useRecipesContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {useAuthContext} from '../hooks/useAuthContext.jsx'
 
 const AddButtonForm = () => {
   //const { dispatch } = useRecipesContext()
@@ -14,9 +15,15 @@ const AddButtonForm = () => {
   const [error, setError] = useState(null);
   const [type, setType] = useState('');
   const [emptyFields, setEmptyFields] = useState([]);
+  const {user} = useAuthContext
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!user){
+      setError('You must be logged in')
+      return
+    }
 
     const recipe = { type, title, servingSize, time, ingredients, steps };
     for (const key in recipe) {
@@ -28,6 +35,7 @@ const AddButtonForm = () => {
       body: JSON.stringify(recipe),
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       },
     });
     const json = await response.json();

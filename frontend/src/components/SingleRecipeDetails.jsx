@@ -9,9 +9,11 @@ import Divider from '@mui/material/Divider';
 import React, { useState } from 'react';
 import ConfirmationModal from '../components/ConfirmationModal.jsx'
 import { useNavigate } from "react-router-dom";
+import {useAuthContext} from '../hooks/useAuthContext'
 
 
 const SingleRecipeDetails = ({ recipe }) => {
+  const {user} = useAuthContext()
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -19,9 +21,17 @@ const SingleRecipeDetails = ({ recipe }) => {
     setIsModalOpen(true);
   };
 
+
   const handleConfirmDelete = async () => {
+    if(!user){
+      return
+    }
+
     const response = await fetch('http://localhost:4000/api/recipes/' + recipe._id, {
       method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     });
 
     if (!response.ok) {

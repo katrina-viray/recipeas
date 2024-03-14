@@ -7,11 +7,13 @@ import Dropdown from '../components/Dropdown.jsx'
 import logo from '../assets/recipes-logo.png'
 import Divider from '@mui/material/Divider';
 import SearchIcon from '@mui/icons-material/Search';
+import {useAuthContext} from '../hooks/useAuthContext'
 
 
 const Recipes = () => {
     // const [recipes, setRecipes] = useState(null);
     const {recipes, dispatch} = useRecipesContext()
+    const {user} = useAuthContext()
     const [selectedButton, setSelectedButton] = useState('');
     const [searchItem, setSearchItem] = useState('')
     const [lineCount, setLineCount] = useState(recipes ? recipes.length : 0);
@@ -20,7 +22,13 @@ const Recipes = () => {
 
     useEffect(() => {
         const fetchRecipes = async () => {
-            const response = await fetch('http://localhost:4000/api/recipes')
+          // send authorization header w/user's token. if valid, then we have
+          // access to this endpoint
+            const response = await fetch('http://localhost:4000/api/recipes', {
+              headers: {
+                'Authorization': `Bearer ${user.token}`
+              }
+            })
             const json = await response.json()
 
             if(response.ok){
@@ -30,9 +38,11 @@ const Recipes = () => {
                 dispatch({type: 'SET_RECIPES', payload: json})
             }
         }
-
-        fetchRecipes()
-    }, [])
+        
+        if(user){
+          fetchRecipes()
+        }
+    }, [dispatch, user])
 
     const handleClick = (buttonTitle) => {
       setSelectedButton(buttonTitle);

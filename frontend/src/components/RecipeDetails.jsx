@@ -3,10 +3,14 @@ import React, { useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Link } from 'react-router-dom';
+import {useAuthContext} from '../hooks/useAuthContext'
+
 
 
 const RecipeDetails = ({ recipe, handleUpdateRecipe }) => {
   const [isFilled, setIsFilled] = useState(false);
+  const {user} = useAuthContext()
+
 
   const handleClick = async () => {
     setIsFilled(!isFilled);
@@ -15,6 +19,7 @@ const RecipeDetails = ({ recipe, handleUpdateRecipe }) => {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       },
       body: JSON.stringify({
         type: recipe.type,

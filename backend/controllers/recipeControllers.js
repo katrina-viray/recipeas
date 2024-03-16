@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 
 // GET all recipes
 const getRecipes = async (req, res) => {
-    const recipes = await Recipe.find({}).sort({createdAt: -1});
+    const user_id = req.user._id
+
+    const recipes = await Recipe.find({user_id}).sort({createdAt: -1});
     res.status(200).json(recipes);
 };
 
@@ -54,8 +56,10 @@ const createRecipe = async (req, res) => {
 
     // add new doc to the database
     try{
+        const user_id = req.user._id
+
         const recipe = await Recipe.create({
-            type, title, servingSize, time, ingredients, steps});
+            type, title, servingSize, time, ingredients, steps, user_id});
         res.status(200).json(recipe);
     } catch(error){
         res.status(400).json({error: error.message});

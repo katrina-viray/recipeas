@@ -24,10 +24,11 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {user && (<div>
-          <span>user.email</span>
-          <button className="bg-second-purple hover:bg-main-blue font-bold py-1 px-9 rounded-full"
-           onClick={handleClick}>Log out</button>
+        {user && (
+          <div className="">
+            <span className="pr-5">{user.email}</span>
+            <button className="bg-second-purple hover:bg-main-blue font-bold py-1 px-9 rounded-full"
+            onClick={handleClick}>Log out</button>
           </div>)}
 
         {!user && (

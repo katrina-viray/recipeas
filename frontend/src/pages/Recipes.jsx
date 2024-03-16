@@ -56,9 +56,9 @@ const Recipes = () => {
     }  
 
     return(
-        <div className="flex flex-col h-full min-h-screen bg-main-gray">
-            <Header title="Recipes" logo={logo} />
-
+      <div>
+        <Header title="Recipes" logo={logo} />
+        <div className="flex items-center justify-center h-full min-h-screen bg-main-gray">
             <div className="flex">
                 <div className="flex-col ml-10">
                     <div className="pt-8 pr-9">
@@ -155,6 +155,7 @@ const Recipes = () => {
 
 
         </div>
+      </div>
     )
 }
 

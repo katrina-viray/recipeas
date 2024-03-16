@@ -1,4 +1,3 @@
-// RecipeDetails.jsx
 import React, { useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -8,7 +7,7 @@ import {useAuthContext} from '../hooks/useAuthContext'
 
 
 const RecipeDetails = ({ recipe, handleUpdateRecipe }) => {
-  const [isFilled, setIsFilled] = useState(false);
+  const [isFilled, setIsFilled] = useState(recipe.favorite);
   const {user} = useAuthContext()
 
 
@@ -59,7 +58,7 @@ const RecipeDetails = ({ recipe, handleUpdateRecipe }) => {
       typeColor="bg-dessert-color"
       fontColor="black"
       break;
-    case "Snack":
+    case "Snacks":
       typeColor="bg-snack-color"
       fontColor="black"
       break;

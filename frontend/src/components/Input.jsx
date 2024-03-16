@@ -15,7 +15,7 @@ const AddButtonForm = () => {
   const [error, setError] = useState(null);
   const [type, setType] = useState('');
   const [emptyFields, setEmptyFields] = useState([]);
-  const {user} = useAuthContext
+  const {user} = useAuthContext()
 
   const handleSubmit = async (e) => {
     e.preventDefault();

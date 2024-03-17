@@ -39,7 +39,8 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="mb-4 flex items-center">
+          {/*
+            <div className="mb-4 flex items-center">
             <input
               type="checkbox"
               id="rememberMe"
@@ -51,6 +52,7 @@ const Login = () => {
               Remember Me
             </label>
           </div>
+          */}
           <button
             disabled = {isLoading}
             type="button"
@@ -63,10 +65,16 @@ const Login = () => {
             <a href="/signup" className="text-main-purple hover:text-second-purple">
             Don't have an account? Sign up
             </a>
-            <p className="text-white ml-12">
+            {/*
+              <p className="text-white ml-12">
               <a href="/forgot-password" className="text-main-purple hover:text-second-purple">
                 Forgot password
               </a>
+            </p>
+            */}
+
+            <p className="text-white ml-40">
+              
             </p>
           </div>
           <div className="pt-5">

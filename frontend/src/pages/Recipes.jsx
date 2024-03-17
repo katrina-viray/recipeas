@@ -3,7 +3,7 @@ import {useRecipesContext } from '../hooks/useRecipesContext'
 import RecipeDetails from '../components/RecipeDetails'
 import Header from '../components/RecipeHeader.jsx'
 import Button from '../components/Button.jsx'
-import Dropdown from '../components/Dropdown.jsx'
+// import Dropdown from '../components/Dropdown.jsx'
 import logo from '../assets/recipes-logo.png'
 import Divider from '@mui/material/Divider';
 import SearchIcon from '@mui/icons-material/Search';
@@ -16,9 +16,9 @@ const Recipes = () => {
     const {user} = useAuthContext()
     const [selectedButton, setSelectedButton] = useState('');
     const [searchItem, setSearchItem] = useState('')
-    const [lineCount, setLineCount] = useState(recipes ? recipes.length : 0);
-    //const [additionalLinesNeeded, setAdditionalLinesNeeded] = Math.max(10 - lineCount, 0);
-    const additionalLinesNeeded = Math.max(10 - lineCount, 0);
+    const [filteredItems, setFilteredItems] = useState(recipes)
+    const [lineCount, setLineCount] = useState(0);
+    const [additionalLinesNeeded, setAdditionalLinesNeeded] = useState(Math.max(10 - lineCount, 0));
 
     useEffect(() => {
         const fetchRecipes = async () => {
@@ -36,23 +36,43 @@ const Recipes = () => {
                 
                 // payload returns the full array of data
                 dispatch({type: 'SET_RECIPES', payload: json})
+                setFilteredItems(json) 
+                setLineCount(json.length)
             }
         }
         
-        if(user){
+        if (user){
           fetchRecipes()
         }
     }, [dispatch, user])
 
     const handleClick = (buttonTitle) => {
-      setSelectedButton(buttonTitle);
+      setSelectedButton(selectedButton === buttonTitle ? '' : buttonTitle);
       setLineCount(recipes.length);
-      //setAdditionalLinesNeeded(Math.max(10 - lineCount, 0));
+
+      if (selectedButton === buttonTitle) {
+        // If the button that was clicked matches the selectedButton, clear the filter
+        setFilteredItems(recipes);
+        setAdditionalLinesNeeded(Math.max(10 - recipes.length, 0))
+      } else {
+        // Filter the recipes based on the buttonTitle
+        const filteredItems = recipes.filter((recipe) =>
+          recipe.type.includes(buttonTitle)
+        );
+        setFilteredItems(filteredItems);
+        setAdditionalLinesNeeded(Math.max(10 - filteredItems.length, 0))
+      }
     };
 
     const handleInputChange = (e) => { 
       const searchTerm = e.target.value;
       setSearchItem(searchTerm)
+
+      const filteredItem = recipes.filter((recipe) =>
+      recipe.title.toLowerCase().includes(searchTerm))
+
+      setFilteredItems(filteredItem);
+      setAdditionalLinesNeeded(Math.max(10 - filteredItems.length, 0))
     }  
 
     return(
@@ -61,8 +81,10 @@ const Recipes = () => {
         <div className="flex items-center justify-center h-full min-h-screen bg-main-gray">
             <div className="flex">
                 <div className="flex-col ml-10">
-                    <div className="pt-8 pr-9">
+                    <div className="pt-20 pr-9">
+                      {/*
                         <Dropdown options={["Sort by: Favorited", "Sort by: Favorited"]}/>
+                      */}
                     </div>
                                     
                     <div className="py-3 pt-10 pr-9">
@@ -110,7 +132,7 @@ const Recipes = () => {
 
                   <div className="Searchbar pt-5 relative mx-auto text-gray-600" style={{ width: '600px' }}>
                     <input
-                      type="search"
+                      type="input"
                       placeholder="Search for your recipe here"
                       onChange={handleInputChange}
                       value={searchItem}
@@ -118,9 +140,9 @@ const Recipes = () => {
                       rounded-3xl text-sm focus:outline-none"
                     />
                     <button type="submit"
-                     className="absolute left-0 top-0 mt-7 ml-5 bg-main-purple p-0.5 rounded-full"
+                     className="absolute left-0 top-0 mt-7 ml-5 p-1 rounded-full"
                      >
-                      <SearchIcon style={{ color: 'white' }} />
+                      <SearchIcon style={{ color: '#635BFF' }} />
                     </button>
                   </div>
 
@@ -136,7 +158,7 @@ const Recipes = () => {
                                 </tr>
                               </thead>
                               <tbody className="pb-1">
-                                {recipes && recipes.map((recipe) => (
+                                {filteredItems && filteredItems.map((recipe) => (
                                   <RecipeDetails key={recipe._id} recipe={recipe} />
                                 ))}
                               </tbody>

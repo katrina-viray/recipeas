@@ -30,7 +30,7 @@ const AddButtonForm = () => {
       console.log(`${key}: ${recipe[key]}`);
     }
    
-    const response = await fetch('http://localhost:4000/api/recipes', {
+    const response = await fetch(API_URL + '/api/recipes', {
       method: 'POST',
       body: JSON.stringify(recipe),
       headers: {

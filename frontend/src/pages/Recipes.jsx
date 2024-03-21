@@ -24,7 +24,7 @@ const Recipes = () => {
         const fetchRecipes = async () => {
           // send authorization header w/user's token. if valid, then we have
           // access to this endpoint
-            const response = await fetch('http://localhost:4000/api/recipes', {
+            const response = await fetch(API_URL + '/api/recipes', {
               headers: {
                 'Authorization': `Bearer ${user.token}`
               }

@@ -14,7 +14,7 @@ const SingleRecipe = () => {
 
   useEffect(() => {
     const fetchRecipe = async () => {
-        const response = await fetch(`http://localhost:4000/api/recipes/${id}`, {
+        const response = await fetch(API_URL + `/api/recipes/${id}`, {
           headers: {
             'Authorization': `Bearer ${user.token}`
           }

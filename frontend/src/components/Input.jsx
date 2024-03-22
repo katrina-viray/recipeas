@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {useAuthContext} from '../hooks/useAuthContext.jsx'
 
+
 const AddButtonForm = () => {
   //const { dispatch } = useRecipesContext()
   const [title, setTitle] = useState('');
@@ -30,7 +31,7 @@ const AddButtonForm = () => {
       console.log(`${key}: ${recipe[key]}`);
     }
    
-    const response = await fetch(API_URL + '/api/recipes', {
+    const response = await fetch(process.env.REACT_APP_API_URL + '/api/recipes', {
       method: 'POST',
       body: JSON.stringify(recipe),
       headers: {

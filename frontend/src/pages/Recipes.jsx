@@ -24,7 +24,7 @@ const Recipes = () => {
         const fetchRecipes = async () => {
           // send authorization header w/user's token. if valid, then we have
           // access to this endpoint
-            const response = await fetch(process.env.REACT_APP_API_URL + '/api/recipes', {
+            const response = await fetch(import.meta.env.VITE_API_URL + '/api/recipes', {
               headers: {
                 'Authorization': `Bearer ${user.token}`
               }

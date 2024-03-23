@@ -30,8 +30,8 @@ const AddButtonForm = () => {
     for (const key in recipe) {
       console.log(`${key}: ${recipe[key]}`);
     }
-   
-    const response = await fetch(process.env.REACT_APP_API_URL + '/api/recipes', {
+
+    const response = await fetch(import.meta.env.VITE_API_URL + '/api/recipes', {
       method: 'POST',
       body: JSON.stringify(recipe),
       headers: {

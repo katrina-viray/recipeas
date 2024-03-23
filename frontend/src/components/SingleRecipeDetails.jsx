@@ -27,7 +27,7 @@ const SingleRecipeDetails = ({ recipe }) => {
       return
     }
 
-    const response = await fetch(process.env.REACT_APP_API_URL + '/api/recipes/' + recipe._id, {
+    const response = await fetch(import.meta.env.VITE_API_URL + '/api/recipes/' + recipe._id, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`

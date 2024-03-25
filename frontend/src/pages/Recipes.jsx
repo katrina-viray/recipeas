@@ -6,7 +6,7 @@ import Button from '../components/Button.jsx'
 // import Dropdown from '../components/Dropdown.jsx'
 import logo from '../assets/recipes-logo.png'
 import Divider from '@mui/material/Divider';
-import SearchIcon from '@mui/icons-material/Search';
+//import SearchIcon from '@mui/icons-material/Search';
 import {useAuthContext} from '../hooks/useAuthContext'
 
 
@@ -142,7 +142,7 @@ const Recipes = () => {
                     <button type="submit"
                      className="absolute left-0 top-0 mt-7 ml-5 p-1 rounded-full"
                      >
-                      <SearchIcon style={{ color: '#635BFF' }} />
+                      {/* <SearchIcon style={{ color: '#635BFF' }} /> */}
                     </button>
                   </div>
 
